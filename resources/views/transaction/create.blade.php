@@ -45,12 +45,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="input-group input-group-merge">
-                                            <label for="user" class="col-md-3 col-form-label form-control-label">RECEIVING USER</label>
-                                            <div class="col-md-9">
+                                            <label for="user" class="col-md-4 col-form-label form-control-label">RECEIVING USER</label>
+                                            <div class="col-md-8">
                                                 <select class="form-control" name="user_id" data-toggle="select"  id="user">
                                                     <option></option>
-                                                    <option value="Approved" {{$var == 'Approved' ? 'selected' : ''}}>Approved</option>
-                                                    <option value="Rejected" {{$var == 'Rejected' ? 'selected' : ''}}>Disapproved</option>
+                                                    @foreach($data->users as $user)
+                                                        <option value="{{$user->id}}" {{old('user_id') == $user->id ? 'selected' : ''}}>{{$user->getFullNameAttribute()}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -59,9 +60,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="input-group input-group-merge">
-                                            <label for="example-text-input" class="col-md-3 col-form-label form-control-label">SURNAME</label>
-                                            <div class="col-md-9">
-                                                <input class="form-control" name="surname" value="{{@$personal_info->surname}}" placeholder="First Name" type="text" >
+                                            <label for="example-text-input" class="col-md-4 col-form-label form-control-label">ACCOUNT</label>
+                                            <div class="col-md-8">
+                                                <select class="form-control" name="user_id" data-toggle="select"  id="user">
+                                                    <option></option>
+                                                    @foreach($data->accounts as $account)
+                                                        <option value="{{$account->id}}" {{old('user_id') == $account->id ? 'selected' : ''}}>{{$account->name}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -69,8 +75,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="input-group input-group-merge">
-                                            <label for="example-text-input" class="col-md-3 col-form-label form-control-label">FIRST NAME</label>
-                                            <div class="col-md-9">
+                                            <label for="example-text-input" class="col-md-4 col-form-label form-control-label">FIRST NAME</label>
+                                            <div class="col-md-8">
                                                 <input class="form-control" name="last_name" value="{{@$personal_info->first_name}}" placeholder="Last name" type="text" >
                                             </div>
                                         </div>
@@ -80,8 +86,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="input-group input-group-merge">
-                                            <label for="example-text-input" class="col-md-3 col-form-label form-control-label">MIDDLE NAME</label>
-                                            <div class="col-md-9">
+                                            <label for="example-text-input" class="col-md-4 col-form-label form-control-label">MIDDLE NAME</label>
+                                            <div class="col-md-8">
                                                 <input class="form-control" name="company" value="{{@$personal_info->middle_name}}" placeholder="Company" type="text" >
                                             </div>
                                         </div>
@@ -91,8 +97,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="input-group input-group-merge">
-                                            <label for="example-text-input" class="col-md-3 col-form-label form-control-label">DATE OF BIRTH</label>
-                                            <div class="col-md-9">
+                                            <label for="example-text-input" class="col-md-4 col-form-label form-control-label">DATE OF BIRTH</label>
+                                            <div class="col-md-8">
                                                 <input class="form-control" name="score" value="{{@$personal_info->dob}}"  type="text">
                                             </div>
                                         </div>
@@ -106,8 +112,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="input-group">
-                                            <label for="example-text-input" class="col-md-3 col-form-label form-control-label">PLACE OF BIRTH </label>
-                                            <div class="col-md-9">
+                                            <label for="example-text-input" class="col-md-4 col-form-label form-control-label">PLACE OF BIRTH </label>
+                                            <div class="col-md-8">
                                                 <input class="form-control" name="phone" type="text" value="{{@$personal_info->place_of_birth}}" >
                                             </div>
                                         </div>
@@ -116,8 +122,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="input-group input-group-merge">
-                                            <label for="example-text-input" class="col-md-3 col-form-label form-control-label">GENDER </label>
-                                            <div class="col-md-9">
+                                            <label for="example-text-input" class="col-md-4 col-form-label form-control-label">GENDER </label>
+                                            <div class="col-md-8">
                                                 <input class="form-control" name="email" value="{{@$personal_info->gender}}" placeholder="Email address" type="email" >
                                             </div>
                                         </div>
@@ -126,8 +132,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="input-group input-group-merge">
-                                            <label for="example-text-input" class="col-md-3 col-form-label form-control-label">NATIONALITY</label>
-                                            <div class="col-md-9">
+                                            <label for="example-text-input" class="col-md-4 col-form-label form-control-label">NATIONALITY</label>
+                                            <div class="col-md-8">
                                                 <input class="form-control" name="address" value="{{@$personal_info->nationality}}" placeholder="Company" type="text" >
                                             </div>
                                         </div>
@@ -136,8 +142,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="input-group input-group-merge">
-                                            <label for="tags" class="col-md-3 col-form-label form-control-label">POSTAL ADDRESS</label>
-                                            <div class="col-md-9">
+                                            <label for="tags" class="col-md-4 col-form-label form-control-label">POSTAL ADDRESS</label>
+                                            <div class="col-md-8">
                                                 <input class="form-control" name="address" value="{{@$personal_info->postal_address}}" placeholder="Company" type="text" >
                                             </div>
                                         </div>

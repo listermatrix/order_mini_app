@@ -29,7 +29,7 @@ class TransactionController extends Controller
         public function index(Request $request)
         {
             $data = [
-                'users' => User::query()->where('id','!=',auth()->user()->id)
+                'users' => User::query()->where('id','!=',auth()->user()->id)->get()
             ];
             return view('transaction.index',compact('data'));
         }
@@ -46,7 +46,13 @@ class TransactionController extends Controller
                ]);
         }
 
-        return view('transaction.create');
+
+        $data = (object)[
+            'users'    => User::query()->where('id','!=',auth()->user()->id)->get(),
+            'accounts' => auth()->user()->account,
+        ];
+
+        return view('transaction.create',compact('data'));
     }
 
 
