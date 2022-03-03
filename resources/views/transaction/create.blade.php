@@ -45,9 +45,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="input-group input-group-merge">
-                                            <label for="example-text-input" class="col-md-3 col-form-label form-control-label">TITLE</label>
+                                            <label for="user" class="col-md-3 col-form-label form-control-label">RECEIVING USER</label>
                                             <div class="col-md-9">
-                                                <input class="form-control" name="title" value="{{@$personal_info->title}}" placeholder="MR / MRS / PROF" type="text" >
+                                                <select class="form-control" name="user_id" data-toggle="select"  id="user">
+                                                    <option></option>
+                                                    <option value="Approved" {{$var == 'Approved' ? 'selected' : ''}}>Approved</option>
+                                                    <option value="Rejected" {{$var == 'Rejected' ? 'selected' : ''}}>Disapproved</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -143,7 +147,7 @@
                             <hr>
 
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary  my-4">Submit</button>
+                                <button type="submit" class="btn btn-primary  my-4">Proceed <i class="far fa-paper-plane"></i></button>
                             </div>
                         </form>
                     </div>

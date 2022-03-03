@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TRANS;
 use App\AdmissionStatus;
 use App\Applicant;
 use App\DataTables\MscDataTable;
+use App\Models\User;
 use App\MscCurrentEmployer;
 use App\MscEducationalBackground;
 use App\MscEducationalHistory;
@@ -25,14 +26,12 @@ use Illuminate\Support\Facades\Notification;
 class TransactionController extends Controller
 {
 
-//        public function index(MscDataTable $dataTable)
         public function index(Request $request)
         {
-//            Auth::user()->log('VIEWED UNDERGRADUATE DETAILS');
-
-//            return $dataTable->render('transaction.masters.index');
-            return view('transaction.index');
-
+            $data = [
+                'users' => User::query()->where('id','!=',auth()->user()->id)
+            ];
+            return view('transaction.index',compact('data'));
         }
 
 

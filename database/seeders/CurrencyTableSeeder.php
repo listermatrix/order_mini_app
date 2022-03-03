@@ -24,8 +24,8 @@ class CurrencyTableSeeder extends Seeder
         $currency->insert(
             [
                 [
-                    'name' =>'GHANA CEDIS',
-                    'code' =>'GHS',
+                    'name' =>'EUROS',
+                    'code' =>'EUR',
                     'created_at' =>$now,
                     'updated_at' =>$now,
                 ],

@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TRANS\CurrencyController;
+use App\Http\Controllers\TRANS\AccountController;
+use App\Http\Controllers\TRANS\ExchangeController;
 use App\Http\Controllers\TRANS\TransactionController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,41 +29,44 @@ Route::middleware(['auth'])->group(function (){
 
     Route::group(['prefix'=>'dashboard'],function (){
 
-//        Route::get('/','AdminController@index')
         Route::get('/', [AdminController::class, 'index'])->name('dashboard.index');
         Route::get('/exit', [LoginController::class, 'logout'])->name('dashboard.logout');
 
+        Route::prefix('e_tran')->namespace('TRANS')->group(function (){
+
+
+            Route::prefix('transaction')->group(function (){
+                Route::get('index', [TransactionController::class, 'index'])->name('transactions.index');
+                Route::any('create', [TransactionController::class, 'create'])->name('transactions.create');
+            });
 
 
 
+            Route::prefix('exchange')->group(function (){
+                Route::get('index', [ExchangeController::class, 'index'])->name('trans.exchange.index');
+                Route::any('create', [ExchangeController::class, 'create'])->name('trans.exchange.create');
+            });
 
 
-        Route::prefix('transactions')->namespace('TRANS')->group(function (){
+            Route::prefix('currency')->group(function (){
+                Route::get('index', [CurrencyController::class, 'index'])->name('trans.currency.index');
+                Route::any('create', [CurrencyController::class, 'create'])->name('trans.currency.create');
+            });
 
-            Route::get('index', [TransactionController::class, 'index'])->name('transactions.index');
-            Route::any('create', [TransactionController::class, 'create'])->name('transactions.create');
 
 
-            Route::any('edit/{request_code}','MScController@edit')->name('transaction.masters.edit');
-            Route::post('approval/{request_code}','MScController@approval')->name('transaction.masters.approval');
+            Route::prefix('accounts')->group(function (){
+                Route::get('index', [AccountController::class, 'index'])->name('trans.account.index');
+                Route::any('create', [AccountController::class, 'create'])->name('trans.account.create');
+            });
+
+
         });
 
 
-
-        Route::prefix('report')->namespace('ADMIN')->group(function (){
-            Route::get('index','ReportController@index')->name('report.index');
-            Route::any('generate','ReportController@generate')->name('report.generate');
-            Route::any('print','ReportController@print')->name('report.print');
-        });
 
 
 
     });
 
-    /*** Route Group For Student Archives  ***/
-    Route::group(['prefix'=>'archive'],function (){
-        Route::group(['prefix'=>'students'],function (){
-
-        });
-    });
 });

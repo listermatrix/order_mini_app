@@ -15,7 +15,12 @@ return new class extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('user_id');
+            $table->string('currency_id');
+            $table->double('balance',18,2);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

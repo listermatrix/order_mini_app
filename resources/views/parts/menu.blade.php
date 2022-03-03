@@ -36,7 +36,7 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link {{ preg_match('/trans/', $route) ? 'active' : '' }}" href="#navbar-applicant" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-applicant">
+                            <a class="nav-link {{ preg_match('/_tran/', $route) ? 'active' : '' }}" href="#navbar-applicant" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-applicant">
                                 <i class="fa fa-money-bill text-default"></i>
                                 <span class="nav-link-text">Transfer</span>
                             </a>
@@ -44,8 +44,21 @@
                                 <ul class="nav nav-sm flex-column">
 
                                     <li class="nav-item">
-                                        <a href={{route('transactions.index')}} class="nav-link {{ preg_match('/transactions.index/', $route) ? 'text-success' : '' }}"> <i class="fa fa-graduation-cap text-success"></i> All Transactions</a>
+                                        <a href="{{route('trans.account.index')}}" class="nav-link {{ preg_match('/trans.account.index/', $route) ? 'text-success' : '' }}"> <i class="fas fa-money-check"></i> Accounts</a>
                                     </li>
+
+                                    <li class="nav-item">
+                                        <a href="{{route('transactions.index')}}" class="nav-link {{ preg_match('/transactions.index/', $route) ? 'text-success' : '' }}"> <i class="fab fa-bitcoin"></i> All Transactions</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="{{route('trans.exchange.index')}}" class="nav-link {{ preg_match('/exchange.index/', $route) ? 'text-success' : '' }}"> <i class="fas fa-exchange-alt"></i> Exchange Rates </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="{{route('trans.currency.index')}}" class="nav-link {{ preg_match('/currency.index/', $route) ? 'text-success' : '' }}"> <i class="fas fa-coins"></i> Currency </a>
+                                    </li>
+
                                 </ul>
                             </div>
                         </li>

@@ -33,6 +33,11 @@ class User extends Authenticatable
 
 
 
+    public function account()
+    {
+        return $this->hasMany(Account::class);
+    }
+
 
     public function getFullNameAttribute()
     {

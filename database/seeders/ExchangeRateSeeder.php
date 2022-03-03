@@ -30,7 +30,7 @@ class ExchangeRateSeeder extends Seeder
                 'rate'=> '415.90',
                 'inverse'=> '0.0024',
                 'created_at'=> $now,
-                'delete_at'=> $now,
+                'updated_at'=> $now,
             ],
 
             [
@@ -39,7 +39,7 @@ class ExchangeRateSeeder extends Seeder
                 'rate'=> '0.90',
                 'inverse'=> '1.11',
                 'created_at'=> $now,
-                'delete_at'=> $now,
+                'updated_at'=> $now,
             ],
 
             [
@@ -48,7 +48,7 @@ class ExchangeRateSeeder extends Seeder
                 'rate'=> '461.50',
                 'inverse'=> '0.0022',
                 'created_at'=> $now,
-                'delete_at'=> $now,
+                'updated_at'=> $now,
             ]
 
         ];

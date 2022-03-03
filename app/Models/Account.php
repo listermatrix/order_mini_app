@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Account extends Model
 {
     use HasFactory;
+
+
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
+    }
 }
