@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-6">
-                        <h3 class="mb-0 ">NEW TRANSACTION</h3>
+                        <h3 class="mb-0 ">SEND MONEY</h3>
                     </div>
                         <div class="col-6 text-right">
                         </div>

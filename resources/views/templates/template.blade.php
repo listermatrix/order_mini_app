@@ -94,8 +94,8 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0">MASTERS</h5>
-                                        <span class="h2 font-weight-bold mb-0">{{@$ms}}</span>
+                                        <h5 class="card-title text-uppercase text-muted mb-0">USD</h5>
+                                        <span class="h2 font-weight-bold mb-0">{{0}}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -117,8 +117,8 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0">UNDERGRAD.</h5>
-                                        <span class="h2 font-weight-bold mb-0">{{@$und}}</span>
+                                        <h5 class="card-title text-uppercase text-muted mb-0">EUR</h5>
+                                        <span class="h2 font-weight-bold mb-0">{{0}}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -139,8 +139,8 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0">DIPLOMA </h5>
-                                        <span class="h2 font-weight-bold mb-0">{{@$dip}}</span>
+                                        <h5 class="card-title text-uppercase text-muted mb-0">NGN</h5>
+                                        <span class="h2 font-weight-bold mb-0">{{0}}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -161,8 +161,8 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0">TOTAL REQUEST</h5>
-                                        <span class="h2 font-weight-bold mb-0">{{@$tot}}</span>
+                                        <h5 class="card-title text-uppercase text-muted mb-0">TOTAL TRANSFERS</h5>
+                                        <span class="h2 font-weight-bold mb-0">{{0}}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
