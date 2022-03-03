@@ -38,6 +38,19 @@ class User extends Authenticatable
         return $this->hasMany(Account::class);
     }
 
+    public function sent()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+
+    public function received()
+    {
+       return Transaction::query()->where('target_user_id',$this->id)->get();
+    }
+
+
+
 
     public function getFullNameAttribute()
     {

@@ -48,23 +48,23 @@
                             <tr>
                                 <th scope="col">From</th>
                                 <th scope="col">To</th>
-                                <th scope="col">Value</th>
-                                <th scope="col">Currency</th>
+                                <th scope="col">Source Amt.</th>
+                                <th scope="col">Received Amt</th>
+                                <th scope="col">Rate</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Updated At</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($data as $currency)
+                            @foreach($trans as $tran)
                                 <tr>
-                                    <td> {{$currency->name ?? ''}}</td>
-                                    <td> {{$currency->code ?? ''}}</td>
-                                    <td> {{$currency->created_at}}</td>
-                                    <td> {{$currency->updated_at}}</td>
-                                    <td>
-                                        <a class="btn btn-primary btn-sm" href=""><i class="fas fa-pencil-alt"></i></a>
-                                        <a class="btn btn-danger btn-sm" href=""><i class="far fa-trash-alt"></i></a>
-                                    </td>
+                                    <td> {{$tran->sender->id   == auth()->user()->id  ? 'You' : $tran->sender->first_name}}</td>
+                                    <td> {{$tran->receiver->id == auth()->user()->id  ? 'You' : $tran->receiver->first_name }}</td>
+                                    <td class="text-primary"> {{number_format($tran->amount_transferred,2) .' ' ."{$tran->source_currency->code}"}}</td>
+                                    <td class="text-warning"> {{number_format($tran->amount_received,2) .' ' ."{$tran->target_currency->code}"}}</td>
+                                    <td> {{$tran->rate}}</td>
+                                    <td> {{$tran->created_at}}</td>
+                                    <td> {{$tran->updated_at}}</td>
                                 </tr>
 
                             @endforeach

@@ -47,10 +47,10 @@
                                         <div class="input-group input-group-merge">
                                             <label for="user" class="col-md-4 col-form-label form-control-label">RECEIVING USER</label>
                                             <div class="col-md-8">
-                                                <select class="form-control" name="user_id" data-toggle="select"  id="user">
+                                                <select class="form-control" name="receiving_user" data-toggle="select"  id="user">
                                                     <option></option>
                                                     @foreach($data->users as $user)
-                                                        <option value="{{$user->id}}" {{old('user_id') == $user->id ? 'selected' : ''}}>{{$user->getFullNameAttribute()}}</option>
+                                                        <option value="{{$user->id}}" {{old('receiving_user') == $user->id ? 'selected' : ''}}>{{$user->getFullNameAttribute()}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -60,12 +60,12 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="input-group input-group-merge">
-                                            <label for="example-text-input" class="col-md-4 col-form-label form-control-label">ACCOUNT</label>
+                                            <label for="account_id" class="col-md-4 col-form-label form-control-label">SOURCE ACCOUNT</label>
                                             <div class="col-md-8">
-                                                <select class="form-control" name="user_id" data-toggle="select"  id="user">
+                                                <select class="form-control" name="account_id" data-toggle="select"  id="account_id">
                                                     <option></option>
                                                     @foreach($data->accounts as $account)
-                                                        <option value="{{$account->id}}" {{old('user_id') == $account->id ? 'selected' : ''}}>{{$account->name}}</option>
+                                                        <option value="{{$account->id}}" {{old('account_id') == $account->id ? 'selected' : ''}}>{{$account->name}} - {{$account->balance}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -75,9 +75,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="input-group input-group-merge">
-                                            <label for="example-text-input" class="col-md-4 col-form-label form-control-label">FIRST NAME</label>
+                                            <label for="amount" class="col-md-4 col-form-label form-control-label">TRANSFER AMOUNT</label>
                                             <div class="col-md-8">
-                                                <input class="form-control" name="last_name" value="{{@$personal_info->first_name}}" placeholder="Last name" type="text" >
+                                                <input class="form-control" name="amount"  id="amount" min="1"  value="1" step="0.01" placeholder="Amount" type="number">
                                             </div>
                                         </div>
                                     </div>
@@ -86,71 +86,23 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="input-group input-group-merge">
-                                            <label for="example-text-input" class="col-md-4 col-form-label form-control-label">MIDDLE NAME</label>
+                                            <label for="currency" class="col-md-4 col-form-label form-control-label">TARGET CURRENCY</label>
                                             <div class="col-md-8">
-                                                <input class="form-control" name="company" value="{{@$personal_info->middle_name}}" placeholder="Company" type="text" >
+                                                <select class="form-control" name="target_currency" data-toggle="select"  id="currency">
+                                                    <option></option>
+                                                    @foreach($data->currencies as $currency)
+                                                        <option value="{{$currency->id}}" {{old('currency_id') == $currency->id ? 'selected' : ''}}>{{$currency->code}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <div class="input-group input-group-merge">
-                                            <label for="example-text-input" class="col-md-4 col-form-label form-control-label">DATE OF BIRTH</label>
-                                            <div class="col-md-8">
-                                                <input class="form-control" name="score" value="{{@$personal_info->dob}}"  type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             <hr>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <div class="input-group">
-                                            <label for="example-text-input" class="col-md-4 col-form-label form-control-label">PLACE OF BIRTH </label>
-                                            <div class="col-md-8">
-                                                <input class="form-control" name="phone" type="text" value="{{@$personal_info->place_of_birth}}" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <div class="input-group input-group-merge">
-                                            <label for="example-text-input" class="col-md-4 col-form-label form-control-label">GENDER </label>
-                                            <div class="col-md-8">
-                                                <input class="form-control" name="email" value="{{@$personal_info->gender}}" placeholder="Email address" type="email" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <div class="input-group input-group-merge">
-                                            <label for="example-text-input" class="col-md-4 col-form-label form-control-label">NATIONALITY</label>
-                                            <div class="col-md-8">
-                                                <input class="form-control" name="address" value="{{@$personal_info->nationality}}" placeholder="Company" type="text" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <div class="input-group input-group-merge">
-                                            <label for="tags" class="col-md-4 col-form-label form-control-label">POSTAL ADDRESS</label>
-                                            <div class="col-md-8">
-                                                <input class="form-control" name="address" value="{{@$personal_info->postal_address}}" placeholder="Company" type="text" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary  my-4">Proceed <i class="far fa-paper-plane"></i></button>

@@ -15,7 +15,15 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->integer('source_currency_id');
+            $table->integer('target_currency_id');
+            $table->integer('target_user_id');
+            $table->double('rate');
+            $table->double('amount_transferred');
+            $table->double('amount_received');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
