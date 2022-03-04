@@ -20,6 +20,7 @@ class Transaction extends Model
         'target_user_id',
         'rate',
         'amount_transferred',
+        'status',
         'amount_received',
     ];
 

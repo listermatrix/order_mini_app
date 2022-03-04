@@ -18,6 +18,7 @@ use App\MscPreviousEmployer;
 use App\MscRecommendationForm;
 use App\MscReferee;
 use App\Notifications\Alertify;
+use App\Notifications\TransSuccess;
 use App\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -123,27 +124,31 @@ class TransactionController extends Controller
                         //credit receiving account
                         $receiving_account->increment('balance', $converted_amount);
 
-                        $sender->sent()->create([
+                        $trans = $sender->sent()->create([
                             'source_currency_id' => $source_currency,
                             'target_currency_id' => $target_currency,
                             'target_user_id' => $receiver->id,
                             'rate' => $rate,
+                            'status' => 'success',
                             'amount_transferred' => $amount,
                             'amount_received' => $converted_amount,
                         ]);
 
                         DB::commit();
+
+
+                        //recipient notification
+                        Notification::route('mail', $receiver->email)
+                            ->notify(new TransSuccess($trans));
+
                     }
 
                    return redirect()->route('transactions.index')->with('success','Transaction successful !!');
                }catch (\Exception $ex)
                {
-                   throw $ex;
                    return redirect()->back()->withInput()->withErrors('Transaction failed !!!');
                }
 
-
-            //send mail for successful transaction
         }
 
 
@@ -167,11 +172,6 @@ class TransactionController extends Controller
         return  true;
     }
 
-
-    private  function mail_send($body, $head,$subject,$to,$from)
-    {
-        Notification::route('mail', $to)->notify(new Alertify($body, $head, $subject, $from));
-    }
 
 
 }

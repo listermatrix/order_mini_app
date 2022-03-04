@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('target_currency_id');
             $table->integer('target_user_id');
             $table->double('rate');
+            $table->string('status')->nullable();
             $table->double('amount_transferred');
             $table->double('amount_received');
             $table->timestamps();
