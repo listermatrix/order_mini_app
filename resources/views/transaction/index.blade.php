@@ -10,7 +10,7 @@
                             <h3 class="mb-0 ">All Transactions</h3>
                         </div>
                         <div class="col-6 text-right">
-                           <a class="btn btn-primary" href="{{route('transactions.create')}}"><i class="fas fa-plus"></i> NEW TRANSACTION</a>
+                           <a class="btn btn-primary" href="{{route('transactions.create')}}"><i class="fas fa-plus"></i> TRANSFER</a>
                         </div>
                         <div class="col-md-12">
                             <br>
