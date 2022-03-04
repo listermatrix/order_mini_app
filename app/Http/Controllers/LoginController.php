@@ -77,6 +77,8 @@ class LoginController extends Controller
             ]);
 
 
+            return redirect()->route('transactions.index');
+
         } else {
 
             return Redirect::back()
