@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('username', 50)->unique();
             $table->string('password');
-            $table->smallInteger('role_id')->unsigned()->index();
             $table->integer('wrong_password_attempt_count')->unsigned()->nullable();
             $table->boolean('is_locked')->default(false);
             $table->boolean('must_change_password')->default(true);

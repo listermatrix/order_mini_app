@@ -95,7 +95,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">USD</h5>
-                                        <span class="h2 font-weight-bold mb-0">{{0}}</span>
+                                        <span class="h2 font-weight-bold mb-0">{{$usd}}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -118,7 +118,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">EUR</h5>
-                                        <span class="h2 font-weight-bold mb-0">{{0}}</span>
+                                        <span class="h2 font-weight-bold mb-0">{{$eur}}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -140,7 +140,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">NGN</h5>
-                                        <span class="h2 font-weight-bold mb-0">{{0}}</span>
+                                        <span class="h2 font-weight-bold mb-0">{{$ngn}}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -162,7 +162,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">TOTAL TRANSFERS</h5>
-                                        <span class="h2 font-weight-bold mb-0">{{0}}</span>
+                                        <span class="h2 font-weight-bold mb-0">{{$count}}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -171,8 +171,6 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-sm">
-{{--                                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> {{ $tot != 0 ? (($tot/$tot) * 100) .'%' : '0' .'%' }}</span>--}}
-{{--                                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> {{ $tot != 0 ? ($tot/$tot) * 100 .'%' : '0' .'%' }}</span>--}}
                                     <span class="text-nowrap">Since last month</span>
                                 </p>
                             </div>
@@ -198,7 +196,6 @@
 <script src="{{asset("vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js")}}"></script>
 <script src="{{asset("vendor/lavalamp/js/jquery.lavalamp.min.js")}}"></script>
 
-{{--<script src="{{asset('vendor/sweetalert2/dist/sweetalert2.min.js')}}"></script>--}}
 <script src="{{asset('sweet/sweetalert.min.js')}}"></script>
 <script src="{{asset('vendor/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 
@@ -212,31 +209,6 @@
 
 <script src="{{asset("vendor/chart.js/dist/Chart.min.js")}}"></script>
 <script src="{{asset("vendor/chart.js/dist/Chart.extension.js")}}"></script>
-
-
-@stack('datatables')
-@stack('calender')
-<script src="{{asset("js/argon.min.js")}}"></script>
-<script>
-    // $('.page_link').html('<i class="fas fa-angle-left"></i>');
-    // $('#datatable-buttons .page_link').html('hello');
-</script>
-
-{{--<script src="{{asset('js/tail.datetime-full.js')}}"></script>--}}
-{{--<script src="{{asset('js/tail.datetime-all.js')}}"></script>--}}
-{{--<script>--}}
-{{--    tail.DateTime(".datetime", {--}}
-{{--        position: "bottom",--}}
-{{--        startOpen: false,--}}
-{{--        stayOpen: false,--}}
-{{--        timeHours: true,--}}
-{{--        timeMinutes: true,--}}
-{{--        timeSeconds: true,--}}
-{{--    });--}}
-{{--</script>--}}
-@stack('date')
-
-@stack('scripts')
 </body>
 </html>
 

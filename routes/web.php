@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TRANS\CurrencyController;
 use App\Http\Controllers\TRANS\AccountController;
 use App\Http\Controllers\TRANS\ExchangeController;
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware'=> ['guest']], function() {
     Route::get('login', [LoginController::class, 'getLogin'])->name('login');
     Route::post('login', [LoginController::class, 'postLogin'])->name('post_login');
+    Route::any('register', [RegisterController::class, 'index'])->name('register');
 });
 
 Route::middleware(['auth'])->group(function (){

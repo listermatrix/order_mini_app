@@ -23,6 +23,30 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('*', function ($view) {
+
+            if(auth()->user())
+            {
+                $user  = auth()->user();
+
+                $usd  = $user->account()->where('name','like','USD%')->first();
+                $eur  = $user->account()->where('name','like','EUR%')->first();
+                $ngn  = $user->account()->where('name','like','NGN%')->first();
+                $trans = $user->sent->count() + $user->received()->count();
+
+
+
+                $view->with([
+                    'usd'   => $usd->balance ?? 0,
+                    'eur'   => $eur->balance ?? 0,
+                    'ngn'   => $ngn->balance ?? 0,
+                    'count' => $trans,
+                ]);
+
+            }
+
+
+
+        });
     }
 }
