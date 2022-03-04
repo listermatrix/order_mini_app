@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::redirect('/','/login');
+
 Route::group(['middleware'=> ['guest']], function() {
     Route::get('login', [LoginController::class, 'getLogin'])->name('login');
     Route::post('login', [LoginController::class, 'postLogin'])->name('post_login');
