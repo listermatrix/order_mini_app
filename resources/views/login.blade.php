@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-    <meta name="author" content="Creative Tim">
-    <title>Admin - Login</title>
+    <meta name="description" content="Next Generation E-Wallet, from ZEDETECH">
+    <meta name="author" content="Melchizedek , HighPriest">
+    <title>E-WALLET</title>
 
     <link rel="icon" href="https://demos.creative-tim.com/argon-dashboard-pro/assets/img/brand/favicon.png" type="image/png">
 
