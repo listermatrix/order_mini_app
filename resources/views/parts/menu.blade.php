@@ -4,7 +4,7 @@
         <div class="sidenav-header d-flex align-items-center">
             <a class="navbar-brand text-center" href="">
 {{--                <img src="{{asset("img/new.png")}}" class="navbar-brand-img" width="%" height="70%">--}}
-               SIMBA APP
+               E-WALLET
             </a>
             <div class="ml-auto">
                 <div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin" data-target="#sidenav-main">
