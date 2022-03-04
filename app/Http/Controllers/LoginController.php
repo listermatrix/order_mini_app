@@ -30,14 +30,13 @@ class LoginController extends Controller
     }
 
     public function postLogin(Request $request) {
-        //validate request
-        try {
+
+
             $this->validate($request, [
                 'login' => 'required',
                 'password' => 'required'
             ]);
-        } catch (ValidationException $e) {
-        }
+
 
         // get our login input
         $login = $request->input('login');
