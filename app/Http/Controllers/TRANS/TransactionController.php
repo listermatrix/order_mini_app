@@ -2,29 +2,15 @@
 
 namespace App\Http\Controllers\TRANS;
 
-use App\AdmissionStatus;
-use App\Applicant;
-use App\DataTables\MscDataTable;
+
 use App\Models\Currency;
 use App\Models\ExchangeRate;
 use App\Models\Transaction;
 use App\Models\User;
-use App\MscCurrentEmployer;
-use App\MscEducationalBackground;
-use App\MscEducationalHistory;
-use App\MscExtraInfo;
-use App\MscPersonalInformation;
-use App\MscPreviousEmployer;
-use App\MscRecommendationForm;
-use App\MscReferee;
-use App\Notifications\Alertify;
 use App\Notifications\TransSuccess;
-use App\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Notification;
 
 class TransactionController extends Controller
@@ -108,13 +94,15 @@ class TransactionController extends Controller
 
                    }
 
+                   DB::beginTransaction();
+
                     foreach ($receiving_users as $user) {
                         /** receiver information, receiver account type , target currency **/
                         $receiver = User::query()->find($user);
                         $receiving_account = $receiver->account()->where('currency_id', $target_currency)->first();
 
 
-                        DB::beginTransaction();
+
 
                         //debit source account
                         $source_account->decrement('balance', $amount);
@@ -134,14 +122,18 @@ class TransactionController extends Controller
                             'amount_received' => $converted_amount,
                         ]);
 
-                        DB::commit();
+
 
 
                         //recipient notification
                         Notification::route('mail', $receiver->email)
                             ->notify(new TransSuccess($trans));
 
+
+
                     }
+
+                   DB::commit();
 
                    return redirect()->route('transactions.index')->with('success','Transaction successful !!');
                }catch (\Exception $ex)

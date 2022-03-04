@@ -44,7 +44,7 @@ class TransSuccess extends Notification
     {
         return (new MailMessage)
                     ->greeting("Hello {$this->trans->receiver->first_name},")
-                    ->line("Your account has been credited with {$this->trans->amount_received}.")
+                    ->line("Your account has been credited with {$this->trans->amount_received} {$this->trans->target_currency->code}.")
                     ->line("From  {$this->trans->sender->getFullNameAttribute()}.")
                     ->action('Dashboard', url('/login'))
                     ->line('Thank you for using our application!');
