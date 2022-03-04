@@ -9,7 +9,6 @@
 
     <link rel="icon" href="https://demos.creative-tim.com/argon-dashboard-pro/assets/img/brand/favicon.png" type="image/png">
 
-{{--    <link rel="icon" href="{{asset('img/logo.png')}}" type="image/png">--}}
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
