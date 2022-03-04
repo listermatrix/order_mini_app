@@ -72,31 +72,31 @@ class TransactionController extends Controller
                    $source_account = $sender->account()->find($data['account_id']);
                    $source_currency = $source_account->currency->id;
 
-                   if(!$this->checkAccounts($amount,$source_account))
+                   $receiving_users = $data['receiving_user'];
+                   $total = count($receiving_users);
+
+                   if(!$this->checkAccounts(($amount * $total),$source_account))
                        return redirect()->back()->withInput()->withErrors('Insufficient balance !!!');
 
 
-                   $target_currency = $data['target_currency'];
-
-                   /** receiver information, receiver account type , target currency **/
-                   $receiver = User::query()->find($data['receiving_user']);
-                   $receiving_account = $receiver->account()->where('currency_id', $target_currency)->first();
+                   $target_currency = (int)$data['target_currency'];
 
 
                    //get exchange rate
-
                    $direct = ExchangeRate::query()->where('source_currency', $source_currency)
                        ->where('target_currency', $target_currency)->first();
 
-
                    $rate = 1;
 
-                   if($source_currency !== $target_currency) {
+
+
+
+                   if ($source_currency !== $target_currency) {
+
 
                        if ($direct) {
                            $rate = $direct->rate;
-                       }
-                       else {
+                       } else {
                            $reverse = ExchangeRate::query()->where('source_currency', $target_currency)
                                ->where('target_currency', $source_currency)->first();
 
@@ -108,28 +108,33 @@ class TransactionController extends Controller
 
                    }
 
+                    foreach ($receiving_users as $user) {
+                        /** receiver information, receiver account type , target currency **/
+                        $receiver = User::query()->find($user);
+                        $receiving_account = $receiver->account()->where('currency_id', $target_currency)->first();
 
 
-                   DB::beginTransaction();
+                        DB::beginTransaction();
 
-                    //debit source account
-                   $source_account->decrement('balance', $amount);
+                        //debit source account
+                        $source_account->decrement('balance', $amount);
 
-                   $converted_amount = $amount * $rate;
+                        $converted_amount = $amount * $rate;
 
-                   //credit receiving account
-                   $receiving_account->increment('balance', $converted_amount);
+                        //credit receiving account
+                        $receiving_account->increment('balance', $converted_amount);
 
-                   $sender->sent()->create([
-                           'source_currency_id'=>$source_currency,
-                           'target_currency_id'=>$target_currency,
-                           'target_user_id'=>$receiver->id,
-                           'rate'=>$rate,
-                           'amount_transferred'=>$amount,
-                           'amount_received'=>$converted_amount,
-                       ]);
+                        $sender->sent()->create([
+                            'source_currency_id' => $source_currency,
+                            'target_currency_id' => $target_currency,
+                            'target_user_id' => $receiver->id,
+                            'rate' => $rate,
+                            'amount_transferred' => $amount,
+                            'amount_received' => $converted_amount,
+                        ]);
 
-                   DB::commit();
+                        DB::commit();
+                    }
 
                    return redirect()->route('transactions.index')->with('success','Transaction successful !!');
                }catch (\Exception $ex)

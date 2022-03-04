@@ -47,10 +47,10 @@
                                         <div class="input-group input-group-merge">
                                             <label for="user" class="col-md-4 col-form-label form-control-label">RECEIVING USER</label>
                                             <div class="col-md-8">
-                                                <select class="form-control" name="receiving_user" data-toggle="select"  id="user">
+                                                <select class="form-control" name="receiving_user[]" data-toggle="select"  id="user" multiple>
                                                     <option></option>
                                                     @foreach($data->users as $user)
-                                                        <option value="{{$user->id}}" {{old('receiving_user') == $user->id ? 'selected' : ''}}>{{$user->getFullNameAttribute()}}</option>
+                                                        <option value="{{$user->id}}" {{ in_array($user->id,old('receiving_user')??[])  ? 'selected' : ''}}>{{$user->getFullNameAttribute()}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -91,7 +91,7 @@
                                                 <select class="form-control" name="target_currency" data-toggle="select"  id="currency">
                                                     <option></option>
                                                     @foreach($data->currencies as $currency)
-                                                        <option value="{{$currency->id}}" {{old('currency_id') == $currency->id ? 'selected' : ''}}>{{$currency->code}}</option>
+                                                        <option value="{{$currency->id}}" {{old('target_currency') == $currency->id ? 'selected' : ''}}>{{$currency->code}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
