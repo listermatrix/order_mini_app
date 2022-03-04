@@ -60,23 +60,13 @@ class LoginController extends Controller
                 ['email', '=', $credentials['email']]
             ])->first();
 
-        if (!empty($user) && $user->is_locked) {
-            //process locked user
-            $request->session()->put('locked_user_id', $user->id);
-            return view('locked');
-        }
+
 
         if (Auth::attempt($credentials))
         {
             $user = Auth::user();
             $user->last_login_date = Carbon::now();
-            if (
-                empty($user->wrong_password_attempt_count) ||
-                $user->wrong_password_attempt_count > 0
-            ) {
-                $user->wrong_password_attempt_count = 0;
-            }
-            $user->save();
+
 
             //update audit_trail
             AuditTrail::create([
@@ -86,26 +76,8 @@ class LoginController extends Controller
                 'activity' => $user->username.' logged in '
             ]);
 
-            if ($user->must_change_password) {
-                //process change user password
-                //return redirect()->route('user.password');
-                return 'must change password';
-            } else {
-                return redirect()->route('dashboard.index');
 
-            }
         } else {
-            if (!empty($user)) {
-                if (empty($user->wrong_password_attempt_count)) {
-                    $user->wrong_password_attempt_count = 0;
-                }
-                $user->wrong_password_attempt_count++;
-                //lock user password after 21 trial
-                if ($user->wrong_password_attempt_count >= 30) {
-                    $user->is_locked = true;
-                }
-                $user->save();
-            }
 
             return Redirect::back()
                 ->withInput($request->only('login', 'remember'))

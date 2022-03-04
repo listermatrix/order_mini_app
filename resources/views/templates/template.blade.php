@@ -196,6 +196,7 @@
 <script src="{{asset("vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js")}}"></script>
 <script src="{{asset("vendor/lavalamp/js/jquery.lavalamp.min.js")}}"></script>
 
+{{--<script src="{{asset('vendor/sweetalert2/dist/sweetalert2.min.js')}}"></script>--}}
 <script src="{{asset('sweet/sweetalert.min.js')}}"></script>
 <script src="{{asset('vendor/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 
@@ -209,6 +210,11 @@
 
 <script src="{{asset("vendor/chart.js/dist/Chart.min.js")}}"></script>
 <script src="{{asset("vendor/chart.js/dist/Chart.extension.js")}}"></script>
+
+
+<script src="{{asset("js/argon.min.js")}}"></script>
+
+@stack('scripts')
 </body>
 </html>
 

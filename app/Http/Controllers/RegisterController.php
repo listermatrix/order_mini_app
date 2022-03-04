@@ -44,7 +44,7 @@ class RegisterController extends Controller
             DB::beginTransaction();
 
             $data = $request->all();
-            bcrypt($data['password']);
+            $data['password'] = bcrypt($data['password']);
             $user = User::query()->create($data);
             $this->seedAccount($user);
 
