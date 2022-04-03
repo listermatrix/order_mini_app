@@ -16,7 +16,7 @@ class OrderController extends Controller
     public function index(Request $request)
     {
             $orders  = Order::query();
-            $department = auth()->user()->department_id ?? 0;
+            $department = auth()->user()->department_id ?? 0;  //set the department id and to 0 if undefined
 
             if($department == 1)
                 $orders->whereIn('status',['ORDER_RECEIVED','ORDER_PROCESSING'])->latest();
@@ -42,7 +42,7 @@ class OrderController extends Controller
           ]);
 
 
-            if($validator->fails())
+            if($validator->fails()) //returns validation response messages as array
                 return $this->errorResponse($validator->errors()->all());
 
 
@@ -51,12 +51,14 @@ class OrderController extends Controller
             $data['status'] = 'ORDER_RECEIVED';
 
 
-            DB::beginTransaction();
+        //transaction initiation
+        DB::beginTransaction();
 
-             $order  = Order::query()->create($data);
-             OrderLogEvent::dispatch($order);
+            $order  = Order::query()->create($data);
+            //event dispatch
+            OrderLogEvent::dispatch($order);
 
-            DB::commit();
+        DB::commit();
 
 
           return  $this->successResponse($order,'ORDER_RECEIVED');
