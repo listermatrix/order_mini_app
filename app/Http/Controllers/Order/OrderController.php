@@ -19,15 +19,15 @@ class OrderController extends Controller
             $department = auth()->user()->department_id ?? 0;
 
             if($department == 1)
-                $orders->whereIn('status',['ORDER_RECEIVED','ORDER_PROCESSING']);
+                $orders->whereIn('status',['ORDER_RECEIVED','ORDER_PROCESSING'])->latest();
             else if($department == 2)
-                $orders->where('status','ORDER_READY_TO_SHIP');
+                $orders->where('status','ORDER_READY_TO_SHIP')->latest();
             else
-                $status = '';
+                $orders =  $orders->latest();
 
 
             return view('order.index',[
-                'orders' => $orders->latest()->get()
+                'orders' => $orders->get()
             ]);
     }
 
