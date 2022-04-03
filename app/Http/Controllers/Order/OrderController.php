@@ -77,6 +77,7 @@ class OrderController extends Controller
 
 
 
+
             $data = $request->all(); //retrieve all submitted data as request
 
             if($order->status == 'ORDER_RECEIVED' && $data['picking_product'] == "Yes"){
