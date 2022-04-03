@@ -4107,7 +4107,7 @@
 	 * Data the data from the server (nuking the old) and redraw the table
 	 *  @param {object} oSettings dataTables settings object
 	 *  @param {object} json json data return from the server.
-	 *  @param {string} json.sEcho Tracking flag for DataTables to match transaction
+	 *  @param {string} json.sEcho Tracking flag for DataTables to match order
 	 *  @param {int} json.iTotalRecords Number of records in the data set, not accounting for filtering
 	 *  @param {int} json.iTotalDisplayRecords Number of records in the data set, accounting for filtering
 	 *  @param {array} json.aaData The data to display on this page
@@ -14071,7 +14071,7 @@
 		legacy: {
 			/**
 			 * Enable / disable DataTables 1.9 compatible server-side processing
-			 * transaction
+			 * order
 			 *
 			 *  @type boolean
 			 *  @default null

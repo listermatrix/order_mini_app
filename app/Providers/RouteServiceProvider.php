@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard/e_tran/transaction/index';
+    public const HOME = '/dashboard/order/index';
 
     /**
      * Define your route model bindings, pattern filters, etc.

@@ -49,9 +49,9 @@
                                             <div class="col-md-8">
                                                 <select class="form-control" name="receiving_user[]" data-toggle="select"  id="user" multiple>
                                                     <option></option>
-                                                    @foreach($data->users as $user)
-                                                        <option value="{{$user->id}}" {{ in_array($user->id,old('receiving_user')??[])  ? 'selected' : ''}}>{{$user->getFullNameAttribute()}}</option>
-                                                    @endforeach
+{{--                                                    @foreach($data->users as $user)--}}
+{{--                                                        <option value="{{$user->id}}" {{ in_array($user->id,old('receiving_user')??[])  ? 'selected' : ''}}>{{$user->getFullNameAttribute()}}</option>--}}
+{{--                                                    @endforeach--}}
                                                 </select>
                                             </div>
                                         </div>
@@ -64,9 +64,9 @@
                                             <div class="col-md-8">
                                                 <select class="form-control" name="account_id" data-toggle="select"  id="account_id">
                                                     <option></option>
-                                                    @foreach($data->accounts as $account)
-                                                        <option value="{{$account->id}}" {{old('account_id') == $account->id ? 'selected' : ''}}>{{$account->name}} - {{$account->balance}}</option>
-                                                    @endforeach
+{{--                                                    @foreach($data->accounts as $account)--}}
+{{--                                                        <option value="{{$account->id}}" {{old('account_id') == $account->id ? 'selected' : ''}}>{{$account->name}} - {{$account->balance}}</option>--}}
+{{--                                                    @endforeach--}}
                                                 </select>
                                             </div>
                                         </div>
@@ -90,9 +90,9 @@
                                             <div class="col-md-8">
                                                 <select class="form-control" name="target_currency" data-toggle="select"  id="currency">
                                                     <option></option>
-                                                    @foreach($data->currencies as $currency)
-                                                        <option value="{{$currency->id}}" {{old('target_currency') == $currency->id ? 'selected' : ''}}>{{$currency->code}}</option>
-                                                    @endforeach
+{{--                                                    @foreach($data->currencies as $currency)--}}
+{{--                                                        <option value="{{$currency->id}}" {{old('target_currency') == $currency->id ? 'selected' : ''}}>{{$currency->code}}</option>--}}
+{{--                                                    @endforeach--}}
                                                 </select>
                                             </div>
                                         </div>

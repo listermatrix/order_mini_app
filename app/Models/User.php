@@ -12,9 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-
-
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -29,24 +26,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $fillable = ['first_name', 'middle_name', 'last_name', 'email', 'username', 'password', 'must_change_password'];
-
+    protected $fillable = ['first_name', 'middle_name', 'last_name', 'email','token','username', 'password', 'must_change_password'];
 
 
     public function account()
     {
-        return $this->hasMany(Account::class);
+        return $this->hasMany(Order::class);
     }
 
     public function sent()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(OrderLog::class);
     }
 
 
     public function received()
     {
-       return Transaction::query()->where('target_user_id',$this->id)->get();
+       return OrderLog::query()->where('target_user_id',$this->id)->get();
     }
 
 

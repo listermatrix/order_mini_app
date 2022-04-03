@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Next Generation E-Wallet, from ZEDETECH">
     <meta name="author" content="Melchizedek , HighPriest">
-    <title>E-WALLET</title>
+    <title>E-SHOP</title>
 
     <link rel="icon" href="https://demos.creative-tim.com/argon-dashboard-pro/assets/img/brand/favicon.png" type="image/png">
 
@@ -74,7 +74,6 @@
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary my-4">Login</button>
-                                <a href="{{route('register')}}" class="btn btn-danger my-4">Register</a>
                             </div>
                         </form>
                     </div>

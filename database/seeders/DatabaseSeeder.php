@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\ExchangeRate;
+use App\Models\Department;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,9 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserTableSeeder::class,
-            CurrencyTableSeeder::class,
-            ExchangeRateSeeder::class,
-            AccountSeeder::class,
+            DepartmentSeeder::class,
         ]);
     }
 }

@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('exchange_rates', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->integer('source_currency');
-            $table->integer('target_currency');
-            $table->string('rate');
-            $table->string('inverse');
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exchange_rates');
+        Schema::dropIfExists('departments');
     }
 };

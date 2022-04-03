@@ -1,5 +1,6 @@
 <?php
 namespace Database\Seeders;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -21,7 +22,9 @@ class UserTableSeeder extends Seeder
                     'last_name' => 'mel',
                     'username'=>'zedek',
                     'email'=>'zedek@mail.com',
+                    'department_id'=>1,
                     'password' => bcrypt('password'),
+                    'token'    => (new User(['id'=>1]))->createToken(uniqid())->plainTextToken,
                     'must_change_password' => false,
                     'created_at' => \Carbon\Carbon::now(),
                     'updated_at' => \Carbon\Carbon::now()
@@ -31,7 +34,9 @@ class UserTableSeeder extends Seeder
                     'last_name' => 'Doe',
                     'username'=>'jdoe',
                     'email'=>'jdoe@mail.com',
+                    'department_id'=>2,
                     'password' => bcrypt('password'),
+                    'token'    => (new User(['id'=>2]))->createToken(uniqid())->plainTextToken,
                     'must_change_password' => false,
                     'created_at' => \Carbon\Carbon::now(),
                     'updated_at' => \Carbon\Carbon::now()
@@ -40,8 +45,10 @@ class UserTableSeeder extends Seeder
                     'first_name' => 'Elizabeth',
                     'last_name' => 'Doe',
                     'username'=>'edoe',
+                    'department_id'=>3,
                     'email'=>'edoe@mail.com',
                     'password' => bcrypt('password'),
+                    'token'    => (new User(['id'=>3]))->createToken(uniqid())->plainTextToken,
                     'must_change_password' => false,
                     'created_at' => \Carbon\Carbon::now(),
                     'updated_at' => \Carbon\Carbon::now()

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Order;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,20 +33,19 @@ class AppServiceProvider extends ServiceProvider
 
             if(auth()->user())
             {
-                $user  = auth()->user();
 
-                $usd  = $user->account()->where('name','like','USD%')->first();
-                $eur  = $user->account()->where('name','like','EUR%')->first();
-                $ngn  = $user->account()->where('name','like','NGN%')->first();
-                $trans = $user->sent->count() + $user->received()->count();
 
+                $ready      = Order::query()->where('status', 'ORDER_RECEIVED')->count();
+                $received   = Order::query()->where('status', 'ORDER_SHIPPED')->count();
+                $processed  = Order::query()->where('status', 'ORDER_READY_TO_SHIP')->count();
+                $shipped    = Order::query()->where('status', 'ORDER_PROCESSING')->count();
 
 
                 $view->with([
-                    'usd'   => $usd->balance ?? 0,
-                    'eur'   => $eur->balance ?? 0,
-                    'ngn'   => $ngn->balance ?? 0,
-                    'count' => $trans,
+                    'ready'   => $ready ?? 0,
+                    'received'   => $received ?? 0,
+                    'processed'   => $processed ?? 0,
+                    'shipped' => $shipped ?? 0,
                 ]);
 
             }

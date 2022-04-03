@@ -13,8 +13,6 @@ namespace App\Http\Controllers;
 use App\Models\AuditTrail;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
@@ -76,7 +74,7 @@ class LoginController extends Controller
             ]);
 
 
-            return redirect()->route('transactions.index');
+            return redirect()->route('order.index');
 
         } else {
 

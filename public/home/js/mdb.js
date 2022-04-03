@@ -4015,7 +4015,7 @@ module.exports = {
 	requestAnimationFrame: function() {
 		var me = this;
 		if (me.request === null) {
-			// Skip animation frame transaction until the active one is executed.
+			// Skip animation frame order until the active one is executed.
 			// This can happen when processing mouse events, e.g. 'mousemove'
 			// and 'mouseout' events will trigger multiple renders.
 			me.request = helpers.requestAnimFrame.call(window, function() {
@@ -6916,7 +6916,7 @@ module.exports = {
 
 		helpers.each(leftBoxes.concat(topBoxes), placeBox);
 
-		// Account for chart width and height
+		// Order for chart width and height
 		left += maxChartAreaWidth;
 		top += maxChartAreaHeight;
 

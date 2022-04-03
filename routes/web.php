@@ -3,10 +3,10 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\TRANS\CurrencyController;
-use App\Http\Controllers\TRANS\AccountController;
-use App\Http\Controllers\TRANS\ExchangeController;
-use App\Http\Controllers\TRANS\TransactionController;
+use App\Http\Controllers\Order\CurrencyController;
+use App\Http\Controllers\Order\AccountController;
+use App\Http\Controllers\Order\ExchangeController;
+use App\Http\Controllers\Order\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,51 +26,22 @@ Route::redirect('/','/login');
 Route::group(['middleware'=> ['guest']], function() {
     Route::get('login', [LoginController::class, 'getLogin'])->name('login');
     Route::post('login', [LoginController::class, 'postLogin'])->name('post_login');
-    Route::any('register', [RegisterController::class, 'index'])->name('register');
 });
 
 Route::middleware(['auth'])->group(function (){
 
     Route::group(['prefix'=>'dashboard'],function (){
 
-        Route::get('/', [AdminController::class, 'index'])->name('dashboard.index');
         Route::get('/exit', [LoginController::class, 'logout'])->name('dashboard.logout');
 
-        Route::prefix('e_tran')->namespace('TRANS')->group(function (){
+        Route::prefix('order')->namespace('Order')->group(function (){
 
+            Route::get('index', [OrderController::class, 'index'])->name('order.index');
+            Route::any('create', [OrderController::class, 'create'])->name('order.create');
 
-            Route::prefix('transaction')->group(function (){
-                Route::get('index', [TransactionController::class, 'index'])->name('transactions.index');
-                Route::any('create', [TransactionController::class, 'create'])->name('transactions.create');
-            });
-
-
-
-            Route::prefix('exchange')->group(function (){
-                Route::get('index', [ExchangeController::class, 'index'])->name('trans.exchange.index');
-                Route::any('create', [ExchangeController::class, 'create'])->name('trans.exchange.create');
-            });
-
-
-            Route::prefix('currency')->group(function (){
-                Route::get('index', [CurrencyController::class, 'index'])->name('trans.currency.index');
-                Route::any('create', [CurrencyController::class, 'create'])->name('trans.currency.create');
-            });
-
-
-
-            Route::prefix('accounts')->group(function (){
-                Route::get('index', [AccountController::class, 'index'])->name('trans.account.index');
-                Route::any('create', [AccountController::class, 'create'])->name('trans.account.create');
-            });
-
+            Route::any('edit/{order}', [OrderController::class, 'edit'])->name('order.edit');
+            Route::any('log/{order}', [OrderController::class, 'log'])->name('order.log');
 
         });
-
-
-
-
-
     });
-
 });
