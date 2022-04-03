@@ -64,11 +64,10 @@ class OrderController extends Controller
 
     public function edit(Request $request,Order $order)
     {
-        $user = auth()->user();
-
 
         if($request->isMethod('post'))
         {
+            //validate input request
             $request->validate([
                 'picking_product' => 'required',
                 'shipping_label' => 'required_if:status,ORDER_READY_TO_SHIP',
@@ -78,9 +77,7 @@ class OrderController extends Controller
 
 
 
-            $data = $request->all();
-
-
+            $data = $request->all(); //retrieve all submitted data as request
 
             if($order->status == 'ORDER_RECEIVED' && $data['picking_product'] == "Yes"){
 
@@ -89,6 +86,7 @@ class OrderController extends Controller
             }
             else if($order->status == 'ORDER_PROCESSING'){
 
+                //generate box id and set status to ready to ship
                 $data['box_id'] = $data['box_id'] ?? uniqid('BX',FALSE);
                 $data['status'] = 'ORDER_READY_TO_SHIP';
 
@@ -97,6 +95,7 @@ class OrderController extends Controller
 
                 $data['status'] = 'ORDER_SHIPPED';
 
+                //file upload if file was upload by user & save to labels directory
                 if($request->hasFile('shipping_label')){
                     $request->file('shipping_label')->storePubliclyAs('public/labels',$request->file('shipping_label')->getClientOriginalName());
                     $data['shipping_label'] = 'storage/labels/'.$request->file('shipping_label')->getClientOriginalName();
@@ -105,11 +104,12 @@ class OrderController extends Controller
             }
 
 
+            //transaction initiation
             DB::beginTransaction();
 
-
-            $order->update($data);
-            OrderLogEvent::dispatch($order);
+                $order->update($data);
+                //event dispatch
+                OrderLogEvent::dispatch($order);
 
             DB::commit();
 
@@ -140,7 +140,7 @@ class OrderController extends Controller
 
         $order = Order::query()->find($order_id);
 
-        if(empty($order))
+        if(empty($order)) //return error response
             return $this->errorResponse("Order not found");
 
 
@@ -149,12 +149,14 @@ class OrderController extends Controller
 
         DB::beginTransaction();
 
-        $order->update($data);
+        $order->update($data); //model update
+
+        //event dispatch
         OrderLogEvent::dispatch($order);
 
         DB::commit();
 
-
+        //return response
         return  $this->successResponse($order,'ORDER_CANCELLED');
     }
 
